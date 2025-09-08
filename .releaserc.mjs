@@ -1,0 +1,13 @@
+/**
+ * @type {import('semantic-release').GlobalConfig}
+ */
+module.exports = {
+  branches: ["main"], // only release from main
+  plugins: [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/changelog", { changelogFile: "CHANGELOG.md" }],
+    ["@semantic-release/git", { assets: ["CHANGELOG.md", "package.json"] }],
+    "@semantic-release/github",
+  ],
+};
