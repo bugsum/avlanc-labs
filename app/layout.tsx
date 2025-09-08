@@ -1,6 +1,8 @@
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import type { Metadata } from "next";
 import "./globals.css";
+import { inter } from "@/lib/fonts";
+import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Avlanc Labs",
@@ -14,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`antialiased`}>
+      <body
+        className={`antialiased ${inter.className}`}
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -22,6 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
