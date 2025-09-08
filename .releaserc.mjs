@@ -1,7 +1,7 @@
 /**
  * @type {import('semantic-release').GlobalConfig}
  */
-module.exports = {
+const ReleaseConfig = {
   branches: ["main"], // only release from main
   plugins: [
     "@semantic-release/commit-analyzer",
@@ -11,3 +11,5 @@ module.exports = {
     "@semantic-release/github",
   ],
 };
+
+export default ReleaseConfig;
