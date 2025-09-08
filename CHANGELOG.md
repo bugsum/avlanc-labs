@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/bugsum/avlanc-labs/compare/v1.1.0...v1.2.0) (2025-09-08)
+
+
+### Features
+
+* merge coming soon page to main ([eed4208](https://github.com/bugsum/avlanc-labs/commit/eed42086e1d2566a8685a21f798eedb2dbe76a88))
+
 # [1.1.0](https://github.com/bugsum/avlanc-labs/compare/v1.0.0...v1.1.0) (2025-09-08)
 
 
