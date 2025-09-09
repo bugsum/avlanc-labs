@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { inter } from "@/lib/fonts";
 import Footer from "@/components/layout/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Avlanc Labs",
@@ -28,6 +29,7 @@ export default function RootLayout({
         >
           {children}
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
