@@ -5,34 +5,36 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { toast } from "sonner";
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setLoading(true);
-    setMessage("");
+
+    if (!email) return;
 
     try {
+      setLoading(true);
+
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
-      if (res.ok) {
-        setMessage("✅ Thanks for joining the waitlist!");
-        setEmail("");
-      } else {
-        const data = await res.json();
-        setMessage(`❌ ${data.error || "Something went wrong"}`);
+      if (!res.ok) {
+        toast("Something went wrong");
+        throw new Error("Failed to join waitlist");
       }
+
+      setEmail("");
+      toast("Successfully joined the waitlist!");
+      console.log("Success: ", await res.json());
     } catch (err) {
-      setMessage("❌ Network error, please try again.");
-      console.error(err);
+      console.error("Error joining waitlist: ", err);
     } finally {
       setLoading(false);
     }
@@ -83,7 +85,7 @@ export default function Home() {
           )}
           size="lg"
         >
-          {loading ? "Submitting..." : "Join the Waitlist"}
+          {loading ? "Joining..." : "Join the Waitlist"}
         </Button>
       </form>
     </section>
