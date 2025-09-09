@@ -19,12 +19,20 @@ export default function Home() {
     try {
       setLoading(true);
 
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-
+      
       if (!res.ok) {
         toast("Something went wrong");
         throw new Error("Failed to join waitlist");
